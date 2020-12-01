@@ -2,13 +2,15 @@ import React, { Component, createContext } from 'react';
 import Modal from '~/component/Modal';
 //import { ENV } from '~/configuration/environment';
 import { storyData } from '~/storydata.js';
+import queryString from 'query-string';
 import Airtable from 'airtable';
 
 const Context = createContext('canvas');
 //const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';
-var AIRTABLE_API_KEY = '';
-const AIRTABLE_CASE_STORY_BASE = 'appv0MtYS7Uu06To2';
-const AIRTABLE_PROJECT_STORY_BASE = 'appv0MtYS7Uu06To2';
+
+const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
+//const AIRTABLE_CASE_STORY_BASE = 'appv0MtYS7Uu06To2';
+//const AIRTABLE_PROJECT_STORY_BASE = 'appv0MtYS7Uu06To2';
 export const CanvasConsumer = Context.Consumer;
 
 let emptyState = {
@@ -87,36 +89,57 @@ export class UseCanvas extends Component {
     }
   });
 
-  componentDidMount() {
-    if (localStorage.canvas) {
+  async componentDidMount() {
+
+    const airtableParams = queryString.parse(location.search);
+
+    if (Object.entries(airtableParams).length == 0 && localStorage.canvas) {
       this.setState(state =>
         JSON.parse(decodeURIComponent(escape(atob(localStorage.canvas))))
       );
     }
 
+    // If we don't have airtable params, then go with a blank canvas
+    if (Object.entries(airtableParams).length == 0) return;
+
     // We're not doing anything with airtable for now.
     // Include the following when we're ready to explore this
-    return;
+    //return;
+
+    // let base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
+    //   AIRTABLE_CASE_STORY_BASE
+    // );
+
+    //const search =this.props.location.search;
+    //const params = new URLSearchParams(search);
+    //var record = params.get('record'); //
+
+    //if(record == null || record == '') return;
 
     let base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
-      AIRTABLE_CASE_STORY_BASE
+      airtableParams.baseid
+      //"appsLwrc3ZoxHmEQB"
     );
 
-    base('Case Story').find('recP1U6I5BC3tVWMU', (err, record) => {
+    //base('Stories').find(record, (err, record) => {
+    base(airtableParams.tablename).find(airtableParams.recordid, (err, record) => {
       if (err) {
         console.error(err);
         return;
       }
-      // console.log('Retrieved', record.id);
-      // console.log('Retrieved', record.fields["Everyday Hero"]);
-      // console.log(JSON.parse(decodeURIComponent(escape(atob(localStorage.canvas)))));
-
+      
       // update all the blocks with the content from airtable record
       this.setState(prevState => {
+        
         Object.keys(emptyState).forEach((item, index) => {
-          if (item == 'Ordinary World')
-            prevState[item] = [record.fields['The Ordinary World']];
-          else prevState[item] = [record.fields[item]];
+          Object.keys(record.fields).forEach((airtableKey, index) => {
+            // Check if the keys match (ignoring case, and matching "&"" and "and")
+            if(airtableKey.replace(" and ", " & ").toLowerCase() == item.replace(" and ", " & ").toLowerCase()) {
+              // Found a match
+              prevState[item] = [record.fields[airtableKey]];
+              return;
+            }
+          })
         });
 
         // Separate blocks
@@ -125,6 +148,7 @@ export class UseCanvas extends Component {
         //   record.fields["Challenge 2"],
         //   record.fields["Challenge 3"]
         // ]
+        
         prevState['Three Challenges'] = [
           record.fields['Challenge 1'] +
             record.fields['Challenge 2'] +
