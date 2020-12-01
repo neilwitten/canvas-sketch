@@ -7,7 +7,6 @@ export const PROCESS_ENV =
     ? { GOOGLE_ANALYTICS_ID: '', AIRTABLE_API_KEY: '', ...process.env }
     : process.env;
 
-
 /* eslint-enable */
 
 let findMissingVariable = variable =>
