@@ -90,7 +90,6 @@ export class UseCanvas extends Component {
   });
 
   async componentDidMount() {
-
     const airtableParams = queryString.parse(location.search);
 
     if (Object.entries(airtableParams).length == 0 && localStorage.canvas) {
@@ -122,42 +121,47 @@ export class UseCanvas extends Component {
     );
 
     //base('Stories').find(record, (err, record) => {
-    base(airtableParams.tablename).find(airtableParams.recordid, (err, record) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      
-      // update all the blocks with the content from airtable record
-      this.setState(prevState => {
-        
-        Object.keys(emptyState).forEach((item, index) => {
-          Object.keys(record.fields).forEach((airtableKey, index) => {
-            // Check if the keys match (ignoring case, and matching "&"" and "and")
-            if(airtableKey.replace(" and ", " & ").toLowerCase() == item.replace(" and ", " & ").toLowerCase()) {
-              // Found a match
-              prevState[item] = [record.fields[airtableKey]];
-              return;
-            }
-          })
+    base(airtableParams.tablename).find(
+      airtableParams.recordid,
+      (err, record) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+
+        // update all the blocks with the content from airtable record
+        this.setState(prevState => {
+          Object.keys(emptyState).forEach((item, index) => {
+            Object.keys(record.fields).forEach((airtableKey, index) => {
+              // Check if the keys match (ignoring case, and matching "&"" and "and")
+              if (
+                airtableKey.replace(' and ', ' & ').toLowerCase() ==
+                item.replace(' and ', ' & ').toLowerCase()
+              ) {
+                // Found a match
+                prevState[item] = [record.fields[airtableKey]];
+                return;
+              }
+            });
+          });
+
+          // Separate blocks
+          // prevState["Three Challenges"] = [
+          //   record.fields["Challenge 1"],
+          //   record.fields["Challenge 2"],
+          //   record.fields["Challenge 3"]
+          // ]
+
+          prevState['Three Challenges'] = [
+            record.fields['Challenge 1'] +
+              record.fields['Challenge 2'] +
+              record.fields['Challenge 3']
+          ];
+
+          return prevState;
         });
-
-        // Separate blocks
-        // prevState["Three Challenges"] = [
-        //   record.fields["Challenge 1"],
-        //   record.fields["Challenge 2"],
-        //   record.fields["Challenge 3"]
-        // ]
-        
-        prevState['Three Challenges'] = [
-          record.fields['Challenge 1'] +
-            record.fields['Challenge 2'] +
-            record.fields['Challenge 3']
-        ];
-
-        return prevState;
-      });
-    });
+      }
+    );
   }
 
   customPrompt(text, block, currentValue) {
