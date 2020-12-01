@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import Modal from '~/component/Modal';
-//import { ENV } from '~/configuration/environment';
+import { ENV } from '~/configuration/environment';
 import { storyData } from '~/storydata.js';
 import queryString from 'query-string';
 import Airtable from 'airtable';
@@ -8,7 +8,7 @@ import Airtable from 'airtable';
 const Context = createContext('canvas');
 //const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';
 
-const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
+//const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
 //const AIRTABLE_CASE_STORY_BASE = 'appv0MtYS7Uu06To2';
 //const AIRTABLE_PROJECT_STORY_BASE = 'appv0MtYS7Uu06To2';
 export const CanvasConsumer = Context.Consumer;
@@ -32,6 +32,7 @@ export class UseCanvas extends Component {
     super(props);
 
     //AIRTABLE_API_KEY = ENV.AIRTABLE_API_KEY;
+    console.log(ENV.AIRTABLE_API_KEY)
     this.closeModal = this.closeModal.bind(this);
     this.save = this.save.bind(this);
   }
@@ -115,7 +116,7 @@ export class UseCanvas extends Component {
 
     //if(record == null || record == '') return;
 
-    let base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
+    let base = new Airtable({ apiKey: ENV.AIRTABLE_API_KEY }).base(
       airtableParams.baseid
       //"appsLwrc3ZoxHmEQB"
     );
