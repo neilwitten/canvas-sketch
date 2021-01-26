@@ -6,9 +6,9 @@ import queryString from 'query-string';
 import Airtable from 'airtable';
 
 const Context = createContext('canvas');
-const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';
+//const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';
 
-//const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
+const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
 //const AIRTABLE_CASE_STORY_BASE = 'appv0MtYS7Uu06To2';
 //const AIRTABLE_PROJECT_STORY_BASE = 'appv0MtYS7Uu06To2';
 export const CanvasConsumer = Context.Consumer;
