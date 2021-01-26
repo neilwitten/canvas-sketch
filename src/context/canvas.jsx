@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import Modal from '~/component/Modal';
-//import { ENV } from '~/configuration/environment';   
+//import { ENV } from '~/configuration/environment';
 import { storyData } from '~/storydata.js';
 import queryString from 'query-string';
 import Airtable from 'airtable';
