@@ -1,4 +1,5 @@
-export const REQUIRED_VARIABLES = ['GOOGLE_ANALYTICS_ID', 'AIRTABLE_API_KEY'];
+//export const REQUIRED_VARIABLES = ['GOOGLE_ANALYTICS_ID', 'AIRTABLE_API_KEY'];
+export const REQUIRED_VARIABLES = [];
 
 /* eslint-disable */
 // console.log(process.env);
