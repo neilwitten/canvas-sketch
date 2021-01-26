@@ -1,10 +1,11 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-//import { ENV } from '~/configuration/environment';
+import { ENV } from '~/configuration/environment';
 
 // constants
 
+const Dotenv = require('dotenv-webpack');
 const NODE_ENV = process.env.NODE_ENV || 'production';
 const TEMPLATE_FILE = path.resolve('src', 'index.html');
 const APP_ENTRY_FILE = path.resolve('src', 'index.jsx');
@@ -20,7 +21,7 @@ let templatePlugin = new HtmlWebpackPlugin({
 });
 
 let hotReloaderPlugin = new webpack.HotModuleReplacementPlugin();
-//let useEnvironmentVariables = new webpack.DefinePlugin({ ...ENV });
+let useEnvironmentVariables = new webpack.DefinePlugin({ ...ENV });
 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -32,6 +33,9 @@ let config = {
     app: ['babel-polyfill', APP_ENTRY_FILE]
   },
   mode: 'production',
+  node: {
+    fs: 'empty'
+  }, // required to get dotenv to work, otherwise it throws an fs not defined error
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
     alias: {
@@ -43,14 +47,9 @@ let config = {
     filename: '[name].js'
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        GOOGLE_ANALYTICS_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_ID),
-        AIRTABLE_API_KEY: JSON.stringify(process.env.AIRTABLE_API_KEY)
-      }
-    }),
-    //useEnvironmentVariables,
+    useEnvironmentVariables,
     templatePlugin,
+    new Dotenv(),
     new MiniCssExtractPlugin()
   ],
   module: {

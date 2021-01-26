@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import Modal from '~/component/Modal';
-//import { ENV } from '~/configuration/environment';
+import { ENV } from '~/configuration/environment';
 import { storyData } from '~/storydata.js';
 import queryString from 'query-string';
 import Airtable from 'airtable';
@@ -30,6 +30,9 @@ let enableBlocks = false;
 export class UseCanvas extends Component {
   constructor(props) {
     super(props);
+
+    console.log(process.env.REACT_APP_AIRTABLE_API_KEY);
+    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
 
     //AIRTABLE_API_KEY = ENV.AIRTABLE_API_KEY;
     this.closeModal = this.closeModal.bind(this);
@@ -115,7 +118,9 @@ export class UseCanvas extends Component {
 
     //if(record == null || record == '') return;
 
-    let base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
+    let base = new Airtable({
+      apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
+    }).base(
       airtableParams.baseid
       //"appsLwrc3ZoxHmEQB"
     );
