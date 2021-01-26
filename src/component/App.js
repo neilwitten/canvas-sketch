@@ -14,6 +14,11 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    console.log(process.env);
+    console.log(process.env.AIRTABLE_API_KEY);
+    console.log(process.env.ANOTHER_KEY);
+    console.log('env ' + process.env.REACT_APP_KEY);
+
     // this.state = { isOpen: false };
   }
 

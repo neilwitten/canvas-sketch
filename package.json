@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "build:style": "tailwind build src/scss/base.css -o src/scss/tailwind.css",
-    "dev": "npm run build:style && cross-env NODE_ENV=development AIRTABLE_API_KEY=123456 ANOTHER_KEY=neil webpack-dev-server --history-api-fallback",
-    "start": "npm run build:style && cross-env NODE_ENV=production AIRTABLE_API_KEY=123456 ANOTHER_KEY=neil node server.js",
+    "dev":
+      "npm run build:style && cross-env NODE_ENV=development AIRTABLE_API_KEY=123456 ANOTHER_KEY=neil webpack-dev-server --history-api-fallback",
+    "start":
+      "npm run build:style && cross-env NODE_ENV=production AIRTABLE_API_KEY=123456 ANOTHER_KEY=neil node server.js",
     "build": "webpack",
     "build-prod": "webpack -p",
     "precommit": "pretty-quick --staged",
