@@ -1,7 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { ENV } from '~/configuration/environment';
+//import { ENV } from '~/configuration/environment';
 
 // constants
 
@@ -43,7 +43,13 @@ let config = {
     filename: '[name].js'
   },
   plugins: [
-    useEnvironmentVariables,
+    new webpack.DefinePlugin({
+      'process.env': {
+        GOOGLE_ANALYTICS_ID: JSON.stringify(process.env.GOOGLE_ANALYTICS_ID),
+        AIRTABLE_API_KEY: JSON.stringify(process.env.AIRTABLE_API_KEY)
+      }
+    }),
+    //useEnvironmentVariables,
     templatePlugin,
     new MiniCssExtractPlugin()
   ],
