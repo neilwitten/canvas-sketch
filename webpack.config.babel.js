@@ -122,10 +122,9 @@ if (NODE_ENV === 'development') {
   );
 }
 
-console.log('node env: ' + NODE_ENV)
-console.log('env: ' + process.env)
-console.log('env: ' + ENV)
-console.log('env: ' + ENV.AIRTABLE_API_KEY)
-
+console.log('node env: ' + NODE_ENV);
+console.log('env: ' + process.env);
+console.log('env: ' + ENV);
+console.log('env: ' + ENV.AIRTABLE_API_KEY);
 
 export default config;
