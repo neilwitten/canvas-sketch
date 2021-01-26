@@ -12,9 +12,11 @@ export const REQUIRED_VARIABLES = ['GOOGLE_ANALYTICS_ID', 'AIRTABLE_API_KEY'];
 //     ? { GOOGLE_ANALYTICS_ID: '', AIRTABLE_API_KEY: '', ...process.env }
 //     : process.env;
 
-export const PROCESS_ENV =
-    { GOOGLE_ANALYTICS_ID: '', AIRTABLE_API_KEY: '', ...process.env }
-    ;
+export const PROCESS_ENV = {
+  GOOGLE_ANALYTICS_ID: '',
+  AIRTABLE_API_KEY: '',
+  ...process.env
+};
 
 // console.log(PROCESS_ENV);
 // console.log(process.env.GOOGLE_ANALYTICS_ID);
