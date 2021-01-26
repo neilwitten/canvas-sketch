@@ -1,18 +1,18 @@
 export const REQUIRED_VARIABLES = ['GOOGLE_ANALYTICS_ID', 'AIRTABLE_API_KEY'];
 
 /* eslint-disable */
-console.log(process.env);
-console.log(process.env.AIRTABLE_API_KEY);
-console.log(process.env.ANOTHER_KEY);
-console.log('env ' + process.env.REACT_APP_KEY);
+// console.log(process.env);
+// console.log(process.env.AIRTABLE_API_KEY);
+// console.log(process.env.ANOTHER_KEY);
+// console.log('env ' + process.env.REACT_APP_KEY);
 
 export const PROCESS_ENV =
   process.env.NODE_ENV === 'development'
     ? { GOOGLE_ANALYTICS_ID: '', AIRTABLE_API_KEY: '', ...process.env }
     : process.env;
 
-console.log(PROCESS_ENV);
-console.log(process.env.GOOGLE_ANALYTICS_ID);
+// console.log(PROCESS_ENV);
+// console.log(process.env.GOOGLE_ANALYTICS_ID);
 
 /* eslint-enable */
 
