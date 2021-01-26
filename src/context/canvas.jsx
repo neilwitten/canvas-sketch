@@ -31,8 +31,7 @@ export class UseCanvas extends Component {
   constructor(props) {
     super(props);
 
-    config.log('env: ' + process.env)
-    
+    config.log('env: ' + process.env);
 
     //AIRTABLE_API_KEY = ENV.AIRTABLE_API_KEY;
     this.closeModal = this.closeModal.bind(this);
