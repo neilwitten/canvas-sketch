@@ -31,8 +31,8 @@ export class UseCanvas extends Component {
   constructor(props) {
     super(props);
 
-    console.log(process.env.REACT_APP_AIRTABLE_API_KEY);
-    console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    //console.log(process.env.REACT_APP_AIRTABLE_API_KEY);
+    //console.log(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
 
     //AIRTABLE_API_KEY = ENV.AIRTABLE_API_KEY;
     this.closeModal = this.closeModal.bind(this);
