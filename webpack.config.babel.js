@@ -20,7 +20,7 @@ let templatePlugin = new HtmlWebpackPlugin({
 });
 
 let hotReloaderPlugin = new webpack.HotModuleReplacementPlugin();
-let useEnvironmentVariables = new webpack.DefinePlugin({ ...ENV });
+//let useEnvironmentVariables = new webpack.DefinePlugin({ ...ENV });
 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
