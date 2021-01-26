@@ -9,6 +9,7 @@ export const PROCESS_ENV =
     : process.env;
 
 console.log(PROCESS_ENV);
+console.log(process.env.GOOGLE_ANALYTICS_ID)
 
 /* eslint-enable */
 
