@@ -55,6 +55,9 @@ let config = {
       'process.env.GOOGLE_ANALYTICS_ID': JSON.stringify(
         process.env.GOOGLE_ANALYTICS_ID
       ),
+      'GOOGLE_ANALYTICS_ID': JSON.stringify(
+        process.env.GOOGLE_ANALYTICS_ID
+      ),
       'process.env.REACT_APP_GOOGLE_ANALYTICS_ID': JSON.stringify(
         process.env.REACT_APP_GOOGLE_ANALYTICS_ID
       )
