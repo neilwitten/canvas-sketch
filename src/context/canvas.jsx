@@ -5,7 +5,7 @@ import { storyData } from '~/storydata.js';
 import queryString from 'query-string';
 import Airtable from 'airtable';
 
-require('dotenv').config()
+require('dotenv').config();
 
 const Context = createContext('canvas');
 //OLD ONE const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';

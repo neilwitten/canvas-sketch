@@ -47,7 +47,10 @@ let config = {
     filename: '[name].js'
   },
   plugins: [
-    useEnvironmentVariables,
+    //useEnvironmentVariables,
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_AIRTABLE_API_KEY' : JSON.stringify(process.env.REACT_APP_AIRTABLE_API_KEY)
+    }),
     templatePlugin,
     new Dotenv(),
     new MiniCssExtractPlugin()
