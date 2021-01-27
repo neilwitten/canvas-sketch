@@ -3,6 +3,15 @@ const path = require('path');
 const port = process.env.PORT || 8080;
 const app = express();
 
+console.log("SERVER....")
+console.log('AIRKEY ' + process.env.REACT_APP_AIRTABLE_API_KEY);
+console.log('GA ' + process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+console.log('AIRKEY ' + process.env.AIRTABLE_API_KEY);
+console.log('GA ' + process.env.GOOGLE_ANALYTICS_ID);
+console.log('ENV ' + process.env);
+console.log("-------------")
+
+
 // the __dirname is the current directory from where the script is running
 app.use(express.static(__dirname + '/docs'));
 
