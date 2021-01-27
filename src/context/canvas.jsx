@@ -8,12 +8,6 @@ import Airtable from 'airtable';
 require('dotenv').config();
 
 const Context = createContext('canvas');
-//OLD ONE const AIRTABLE_API_KEY = 'keyV26LysOMLAJkaJ';
-
-//const AIRTABLE_API_KEY = 'key9De4ESRmS3ad19';
-
-//const AIRTABLE_CASE_STORY_BASE = 'appv0MtYS7Uu06To2';
-//const AIRTABLE_PROJECT_STORY_BASE = 'appv0MtYS7Uu06To2';
 export const CanvasConsumer = Context.Consumer;
 
 let emptyState = {
@@ -34,13 +28,6 @@ export class UseCanvas extends Component {
   constructor(props) {
     super(props);
 
-    console.log('AIRKEY ' + process.env.REACT_APP_AIRTABLE_API_KEY);
-    console.log('GA ' + process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
-    console.log('AIRKEY ' + process.env.AIRTABLE_API_KEY);
-    console.log('GA ' + process.env.GOOGLE_ANALYTICS_ID);
-    console.log('ENV ' + process.env);
-
-    //AIRTABLE_API_KEY = ENV.AIRTABLE_API_KEY;
     this.closeModal = this.closeModal.bind(this);
     this.save = this.save.bind(this);
   }
@@ -109,20 +96,6 @@ export class UseCanvas extends Component {
 
     // If we don't have airtable params, then go with a blank canvas
     if (Object.entries(airtableParams).length == 0) return;
-
-    // We're not doing anything with airtable for now.
-    // Include the following when we're ready to explore this
-    //return;
-
-    // let base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
-    //   AIRTABLE_CASE_STORY_BASE
-    // );
-
-    //const search =this.props.location.search;
-    //const params = new URLSearchParams(search);
-    //var record = params.get('record'); //
-
-    //if(record == null || record == '') return;
 
     let base = new Airtable({
       apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
