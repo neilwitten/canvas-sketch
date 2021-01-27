@@ -49,7 +49,15 @@ let config = {
   plugins: [
     //useEnvironmentVariables,
     new webpack.DefinePlugin({
-      'process.env.REACT_APP_AIRTABLE_API_KEY' : JSON.stringify(process.env.REACT_APP_AIRTABLE_API_KEY)
+      'process.env.REACT_APP_AIRTABLE_API_KEY': JSON.stringify(
+        process.env.REACT_APP_AIRTABLE_API_KEY
+      ),
+      'process.env.GOOGLE_ANALYTICS_ID': JSON.stringify(
+        process.env.GOOGLE_ANALYTICS_ID
+      ),
+      'process.env.REACT_APP_GOOGLE_ANALYTICS_ID': JSON.stringify(
+        process.env.REACT_APP_GOOGLE_ANALYTICS_ID
+      )
     }),
     templatePlugin,
     new Dotenv(),
